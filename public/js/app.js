@@ -1,11 +1,13 @@
-$(document).ready(function(){
-  var baseUrl = 'https://api.forecast.io/';
-
+  var weatherdata = {};
+  $(document).ready(function(){
+  var baseUrl = 'https://api.forecast.io/forecast/';
+  var name="Andra";
   $('#get-weather').on('click', getWeather);
 
 
 
   function buildUrl(lat, lon){
+
     return baseUrl + apiKey+'/'+lat+','+lon;
   }
 
@@ -24,6 +26,7 @@ $(document).ready(function(){
 
 
   function successHandler(data){
+    weatherdata = data;
     $('#output').text(JSON.stringify(data));
     console.log(data);
   }
