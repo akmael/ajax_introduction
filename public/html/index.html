@@ -19,6 +19,7 @@
         <input type="text" class="form-control" id="longitude" name="longtiude">
       </div>
       <button class="btn btn-default" id='get-weather'>Get Weather</button>
+      <button class="btn btn-warning" id ="test">Test the template</button>
     </div>
     <hr>
     <div class="row">
@@ -26,10 +27,84 @@
 
       </pre>
     </div>
+    <div class="row" id="test-output"></div>
+
   </div>
 
+      <script id="entry-template" type="text/x-handlebars-template">
+          <div class="entry">
+            <h1>{{title}}</h1>
+            <div class="body">
+              {{body}}
+            </div>
+          </div>
+      </script>
+      <script id='jumbo-template' type="text/x-handlebars-template">
 
+          <div class="jumbotron">
+            <h1>{{title}}</h1>
+            <p>{{description}}</p>
+            <p><a class="btn btn-primary btn-lg" href="#" role="button">{{btnText}}</a></p>
+          </div>
+
+      </script>
+      <script id='general-weather' type='text/x-handlebars-template'>
+
+
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md4">
+                <h1>{{summary}}</h1>
+              </div>
+              <div class="col-md-1 col-md-offset-11">
+                <img src="{{iconImg}}"  class="img-responsive">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 col-md-offset-4">
+                <h3>{{latitude}}</h3>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 col-md-offset-8">
+                <h3>{{longitude}}</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
   <script src="js/config.js"></script>
   <script src="js/app.js"></script>
+  <script>
+
+      // var source= $('#jumbo-template').html();
+      // var template = Handlebars.compile(source);
+      // var data = {title: "My New Post", description: "This is my first post!", btnText: "click"};
+      // var html = template(data);
+      // $("#test-output").html(html);
+
+      $('#test').on('click', testTheTemplate);
+      function testTheTemplate(){
+         var source= $('#general-weather').html();
+         var template = Handlebars.compile(source);
+         var data = {
+              latitude: 100,
+              longitude: 100,
+              summary: "This is the Summary",
+              iconImg: 'http://www.quickmeme.com/img/9c/9c45ee0feeb8dc2206626567a0b59534d71cedf217fe8fdf9135665a7298be54.jpg'
+
+         };
+         var html = template(data);
+          $("#test-output").html(html);
+
+      }
+
+  </script>
+
 </body>
 </html>
